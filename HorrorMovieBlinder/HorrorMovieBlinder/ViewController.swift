@@ -25,7 +25,7 @@ class ViewController: UIViewController {
              1. Core ML Model 모델과 함께 Vision 설정
              //모델을 이용해서 Vision request를 설정하려면, VNCoreMLRequest 객체를 만들어야한다. 이를 위해선 해당 클래스의 인스턴스를 만들고 그것의 model 프로퍼티를 사용한다.
              */
-            let model = try VNCoreMLModel(for: Resnet50().model)
+            let model = try VNCoreMLModel(for: ObjectDetector().model)
             
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
              최선의 결과를 위해서 request의 imageCropAndScaleOption 프로퍼티를 모델이 트레이닝한 이미지의 레이아웃과 맞도록 설정한다.
              가능한 분류 모델에 대해서는 따로 명시되지 않는한 VNImageCropAndScaleOption.centerCrop 옵션이 적절하다.
              */
-            request.imageCropAndScaleOption = .centerCrop
+            request.imageCropAndScaleOption = .scaleFit
             return request
         } catch {
             fatalError("Failed to load Vision ML model: \(error)")
@@ -82,23 +82,28 @@ class ViewController: UIViewController {
                 return
             }
             
-            //이 프로젝트에서 Core ML 모델이 정의한 대로 results는 언제나 VNClassificationObservation일 것이다.
-            guard let classifications = results as? [VNClassificationObservation] else {
-                fatalError("Unexptected Results")
-            }
-        
-        
-            if classifications.isEmpty {
+            if results.isEmpty {
                 self.objectNameLabel.text = "Nothing recognized."
-            } else {
-                // Display top classifications ranked by confidence in the UI.
+                return
+            }
+                
+            switch results.first! {
+            case is VNClassificationObservation:
+                let classifications = results as! [VNClassificationObservation]
                 if let topClassification = classifications.first {
                     self.objectNameLabel.text = String(format: "  (%.2f) %@", topClassification.confidence, topClassification.identifier)
                 }
+            case is VNRecognizedObjectObservation:
+                let predictions = results as! [VNRecognizedObjectObservation]
+                predictions.forEach { (prediction) in
+                    self.createLabelAndBox(prediction: prediction)
+                }
+            default:
+                fatalError("Unexptected Results")
             }
+                
         }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,9 +111,38 @@ class ViewController: UIViewController {
             return
         }
         updateClassifications(for: image)
+        
     }
+    
+    func createLabelAndBox(prediction: VNRecognizedObjectObservation) {
+        let labelString: String? = String(format: "(%.2f) %@", prediction.confidence, prediction.label ?? "")
+        let color: UIColor = .red
+
+        let scale = CGAffineTransform.identity.scaledBy(x: imageView.bounds.width, y: imageView.bounds.height)
+        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
+        let bgRect = prediction.boundingBox.applying(transform).applying(scale)
+        let bgView = UIView(frame: bgRect)
+        bgView.layer.borderColor = color.cgColor
+        bgView.layer.borderWidth = 4
+        bgView.backgroundColor = UIColor.clear
+        imageView.addSubview(bgView)
+
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+        label.text = labelString ?? "N/A"
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = UIColor.black
+        label.backgroundColor = color
+        label.sizeToFit()
+        label.frame = CGRect(x: bgRect.origin.x, y: bgRect.origin.y - label.frame.height,
+                             width: label.frame.width, height: label.frame.height)
+        imageView.addSubview(label)
+    }
+       
 }
 
-
-
-
+extension VNRecognizedObjectObservation {
+    var label: String? {
+        return self.labels.first?.identifier
+    }
+    
+}
