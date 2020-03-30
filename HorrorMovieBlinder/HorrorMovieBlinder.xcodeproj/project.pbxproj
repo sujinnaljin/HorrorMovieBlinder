@@ -14,6 +14,7 @@
 		3BA6ECF724323906007EEF1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BA6ECF624323906007EEF1F /* Assets.xcassets */; };
 		3BA6ECFA24323906007EEF1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BA6ECF824323906007EEF1F /* LaunchScreen.storyboard */; };
 		3BA6ED0224323989007EEF1F /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3BA6ED0124323989007EEF1F /* Resnet50.mlmodel */; };
+		3BA6ED04243243E5007EEF1F /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA6ED03243243E5007EEF1F /* CGImagePropertyOrientation+UIImageOrientation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3BA6ECF924323906007EEF1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BA6ECFB24323906007EEF1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BA6ED0124323989007EEF1F /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = "<group>"; };
+		3BA6ED03243243E5007EEF1F /* CGImagePropertyOrientation+UIImageOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+UIImageOrientation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				3BA6ECED24323904007EEF1F /* AppDelegate.swift */,
 				3BA6ECEF24323904007EEF1F /* SceneDelegate.swift */,
 				3BA6ECF124323904007EEF1F /* ViewController.swift */,
+				3BA6ED03243243E5007EEF1F /* CGImagePropertyOrientation+UIImageOrientation.swift */,
 				3BA6ECF324323904007EEF1F /* Main.storyboard */,
 				3BA6ECF624323906007EEF1F /* Assets.xcassets */,
 				3BA6ECF824323906007EEF1F /* LaunchScreen.storyboard */,
@@ -145,6 +148,7 @@
 				3BA6ECEE24323904007EEF1F /* AppDelegate.swift in Sources */,
 				3BA6ED0224323989007EEF1F /* Resnet50.mlmodel in Sources */,
 				3BA6ECF024323904007EEF1F /* SceneDelegate.swift in Sources */,
+				3BA6ED04243243E5007EEF1F /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
