@@ -96,7 +96,10 @@ class ViewController: UIViewController {
             case is VNRecognizedObjectObservation:
                 let predictions = results as! [VNRecognizedObjectObservation]
                 predictions.forEach { (prediction) in
-                    self.createLabelAndBox(prediction: prediction)
+                    if (prediction.label == "Banana" && !prediction.confidence.isLess(than: 0.8)) {
+                        //self.createLabelAndBox(prediction: prediction)
+                        self.createFilter(prediction: prediction)
+                    }
                 }
             default:
                 fatalError("Unexptected Results")
@@ -116,28 +119,65 @@ class ViewController: UIViewController {
     
     func createLabelAndBox(prediction: VNRecognizedObjectObservation) {
         let labelString: String? = String(format: "(%.2f) %@", prediction.confidence, prediction.label ?? "")
-        let color: UIColor = .red
-
         let scale = CGAffineTransform.identity.scaledBy(x: imageView.bounds.width, y: imageView.bounds.height)
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-        let bgView = UIView(frame: bgRect)
-        bgView.layer.borderColor = color.cgColor
+        addLayerWithLabel(to: imageView, frame: bgRect, content: labelString)
+        
+    }
+    
+    func createFilter(prediction: VNRecognizedObjectObservation) {
+       
+        //애니메이션 등을 할 때 처음으로 돌아가기 위해 굳이 원래 값을 찾아 넣는 경우가 많았는데, 이걸 사용하면 수정하지 않은 원래 상태로 쉽게 되돌릴 수 있다.
+        //scaledBy에서 마이너스는 뒤집기
+        //Changes the scale of the user coordinate system in a context.
+        //{x * sx, y * sy, w * sx, h * sy}
+        let scale = CGAffineTransform.identity.scaledBy(x: imageView.bounds.width, y: imageView.bounds.height)
+        
+        //Returns an affine transformation matrix constructed from scaling values you provide.
+        let transform = CGAffineTransform(scaleX: 1, y: -1)
+            //Changes the origin of the user coordinate system in a context.
+            .translatedBy(x: 0, y: -1)
+        
+        let bgRect = prediction.boundingBox
+            .applying(transform)
+            .applying(scale)
+        print(imageView.frame)
+        print(prediction.boundingBox)
+        print(bgRect)
+        addFilter(to: imageView, frame: bgRect)
+    }
+}
+
+extension ViewController {
+    func addLayerWithLabel(to view: UIView, frame: CGRect, content: String?) {
+        let bgView = UIView(frame: frame)
+        bgView.layer.borderColor = UIColor.red.cgColor
         bgView.layer.borderWidth = 4
         bgView.backgroundColor = UIColor.clear
-        imageView.addSubview(bgView)
-
+        view.addSubview(bgView)
+        
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-        label.text = labelString ?? "N/A"
+        label.text = content ?? "N/A"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor.black
-        label.backgroundColor = color
+        label.backgroundColor = UIColor.red
         label.sizeToFit()
-        label.frame = CGRect(x: bgRect.origin.x, y: bgRect.origin.y - label.frame.height,
-                             width: label.frame.width, height: label.frame.height)
-        imageView.addSubview(label)
+        label.frame = CGRect(x: frame.origin.x,
+                             y: frame.origin.y - label.frame.height,
+                             width: label.frame.width,
+                             height: label.frame.height)
+        view.addSubview(label)
     }
-       
+
+    
+    func addFilter(to view: UIView, frame: CGRect) {
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = frame
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+    }
 }
 
 extension VNRecognizedObjectObservation {
