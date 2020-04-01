@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4kA-jH-tJD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -15,9 +15,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="banana" translatesAutoresizingMaskIntoConstraints="NO" id="ssL-Gg-D1N">
-                                <rect key="frame" x="75" y="138" width="279" height="400"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eggBanana" translatesAutoresizingMaskIntoConstraints="NO" id="ssL-Gg-D1N">
+                                <rect key="frame" x="0.0" y="44" width="414" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.43921568630000002" green="0.6588235294" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8e9-Yp-Omu">
                                 <rect key="frame" x="41" y="617" width="300" height="147"/>
@@ -27,11 +28,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="ssL-Gg-D1N" id="cZy-fX-f3B"/>
+                        <outlet property="imageView" destination="ssL-Gg-D1N" id="lLY-ol-AZg"/>
                         <outlet property="objectNameLabel" destination="8e9-Yp-Omu" id="Bcb-jP-Inp"/>
                     </connections>
                 </viewController>
@@ -39,8 +40,64 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </scene>
+        <!--Image View Controller-->
+        <scene sceneID="j4o-c8-6tz">
+            <objects>
+                <viewController id="hMf-jQ-lRt" customClass="ImageViewController" customModule="HorrorMovieBlinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mT1-Ye-2nU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sujin" translatesAutoresizingMaskIntoConstraints="NO" id="ZuS-VN-tPJ">
+                                <rect key="frame" x="43" y="86" width="327" height="732"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.43921568630000002" green="0.6588235294" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="mWJ-LZ-bVt"/>
+                    </view>
+                    <connections>
+                        <outlet property="faceView" destination="ZuS-VN-tPJ" id="fxQ-wf-41u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gak-KE-edA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089.8550724637682" y="114.50892857142857"/>
+        </scene>
+        <!--Video View Controller-->
+        <scene sceneID="Hct-Qe-aqB">
+            <objects>
+                <viewController id="4kA-jH-tJD" customClass="VideoViewController" customModule="HorrorMovieBlinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GK1-Fz-4PC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydt-Jl-Hfx" customClass="BlurredVideoView" customModule="HorrorMovieBlinder" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ydt-Jl-Hfx" secondAttribute="bottom" id="7ZQ-nb-8kh"/>
+                            <constraint firstItem="ydt-Jl-Hfx" firstAttribute="top" secondItem="GK1-Fz-4PC" secondAttribute="top" id="aPN-SG-UcX"/>
+                            <constraint firstItem="fRB-7g-nXB" firstAttribute="trailing" secondItem="ydt-Jl-Hfx" secondAttribute="trailing" id="own-G8-Iwy"/>
+                            <constraint firstItem="ydt-Jl-Hfx" firstAttribute="leading" secondItem="fRB-7g-nXB" secondAttribute="leading" id="tiD-t6-FiA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fRB-7g-nXB"/>
+                    </view>
+                    <connections>
+                        <outlet property="videoView" destination="ydt-Jl-Hfx" id="rDb-Gk-rPF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EJi-tV-Ffd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957.9710144927537" y="120.53571428571428"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="banana" width="175" height="138"/>
+        <image name="eggBanana" width="1200" height="800"/>
+        <image name="sujin" width="1080" height="1440"/>
     </resources>
 </document>
