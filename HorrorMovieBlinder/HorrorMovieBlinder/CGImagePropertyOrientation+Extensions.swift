@@ -1,8 +1,8 @@
 //
-//  CGImagePropertyOrientation+UIImageOrientation.swift
+//  CGImagePropertyOrientation+Extensions.swift
 //  HorrorMovieBlinder
 //
-//  Created by 강수진 on 2020/03/31.
+//  Created by 강수진 on 2020/04/01.
 //  Copyright © 2020 강수진. All rights reserved.
 //
 
@@ -10,13 +10,6 @@ import UIKit
 import ImageIO
 
 extension CGImagePropertyOrientation {
-    /**
-     Converts a `UIImageOrientation` to a corresponding
-     `CGImagePropertyOrientation`. The cases for each
-     orientation are represented by different raw values.
-     
-     - Tag: ConvertOrientation
-     */
     init(_ orientation: UIImage.Orientation) {
         switch orientation {
         case .up: self = .up
