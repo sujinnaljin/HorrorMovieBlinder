@@ -16,9 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var objectNameLabel: UILabel!
     
+    
     // MARK: - Image Classification
     
     /// - Tag: MLModelSetup
+    // 2. 얼굴 주위 박스 처리하기 위해 얼굴 감지 request 생성. 그리고 결과를 completion handler로 넘겨줌
+    
+    
     lazy var classificationRequest: VNCoreMLRequest = {
         do {
             /*
@@ -142,9 +146,6 @@ class ViewController: UIViewController {
         let bgRect = prediction.boundingBox
             .applying(transform)
             .applying(scale)
-        print(imageView.frame)
-        print(prediction.boundingBox)
-        print(bgRect)
         addFilter(to: imageView, frame: bgRect)
     }
 }
