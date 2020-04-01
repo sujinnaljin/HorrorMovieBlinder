@@ -26,7 +26,7 @@ iOS의  **AVKit**, **Vision** 및 **Sound Analysis** Framework 사용하여 여�
 
 ## Preview
 
- ![preview](https://media.giphy.com/media/kgm2586hH4tRCMHdU2/giphy.gif)
+ ![preview](https://media.giphy.com/media/eM6WHUeqrytE2jpmuL/giphy.gif)
 
 
 
