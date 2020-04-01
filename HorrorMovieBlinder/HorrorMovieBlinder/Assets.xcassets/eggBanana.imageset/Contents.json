@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "eggBanana.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "banana.jpg",
       "scale" : "2x"
     },
     {
